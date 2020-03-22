@@ -4,7 +4,7 @@ from unittest import TestCase
 import unittest
 
 from polygon.point import Point
-import coverage
+
 
 
 
@@ -34,13 +34,5 @@ class TestPoint(TestCase):
         self.assertNotEqual(set_y.call_args[0][0], 20)
 
 if __name__ == '__main__':
-    cov = coverage.Coverage()
-    cov.start()
-
-    # .. call your code ..
-
     unittest.main()
 
-    cov.stop()
-    cov.save()
-    cov.html_report()

@@ -6,6 +6,7 @@ from unittest import TestCase
 from polygon.proxy import Proxy
 
 
+
 class TestProxy(TestCase):
     def setUp(self):
         self.proxy = Proxy(50, 30, 30, 50)
