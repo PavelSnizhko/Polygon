@@ -1,6 +1,6 @@
 import abc
 
-from polygon.annotaion import check_values
+from polygon_p.annotaion import check_values
 
 
 class PolygonInterface(metaclass=abc.ABCMeta):
@@ -17,6 +17,7 @@ class PolygonInterface(metaclass=abc.ABCMeta):
     def calculate_square(self):
         raise NotImplementedError()
 
+
     @abc.abstractmethod
     @check_values
     def set_n(self, n: int):
@@ -26,3 +27,6 @@ class PolygonInterface(metaclass=abc.ABCMeta):
     @check_values
     def set_a(self, a):
         raise NotImplementedError()
+
+
+

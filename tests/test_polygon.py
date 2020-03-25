@@ -2,7 +2,7 @@ import unittest
 from unittest import TestCase
 from unittest.mock import patch
 
-from polygon.polygon import Polygon
+from polygon_p.polygon import Polygon
 
 
 class TestPolygon(TestCase):
@@ -17,7 +17,7 @@ class TestPolygon(TestCase):
         self.assertEqual(self.polygon.get_n(), 30)
         self.assertNotEqual(self.polygon.get_n(), 40)
 
-    @patch("polygon.polygon.Polygon.set_n")
+    @patch("polygon_p.polygon_p.Polygon.set_n")
     def test_set_n(self, set_n):
         self.polygon.set_n(20)
         self.assertTrue(set_n.called)
@@ -27,7 +27,7 @@ class TestPolygon(TestCase):
         self.assertNotEqual(self.polygon.get_n(), 60)
         self.assertNotEqual(self.polygon.get_n(), 40)
 
-    @patch("polygon.polygon.Polygon.set_a")
+    @patch("polygon_p.polygon_p.Polygon.set_a")
     def test_set_a(self, set_a):
         self.polygon.set_a(40)
         self.assertTrue(set_a.called)

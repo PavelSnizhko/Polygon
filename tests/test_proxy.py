@@ -3,8 +3,7 @@ from unittest import TestCase
 
 # from projects.lab.proxy import Proxy
 # from projects.lab.proxy import Proxy
-from polygon.proxy import Proxy
-
+from polygon_p.proxy import Proxy
 
 
 class TestProxy(TestCase):
@@ -32,6 +31,7 @@ class TestProxy(TestCase):
             self.proxy.set_a(30)
 
         self.assertTrue("You can't use a setter function" in str(context.exception))
+
 
 if __name__ == '__main__':
     unittest.main()
