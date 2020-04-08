@@ -2,7 +2,7 @@ import unittest
 from unittest import TestCase
 from unittest.mock import patch
 
-from polygon_p.polygon import Polygon
+from polygon_p.model.polygon import Polygon
 
 
 class TestPolygon(TestCase):

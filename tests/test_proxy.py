@@ -3,7 +3,7 @@ from unittest import TestCase
 
 # from projects.lab.proxy import Proxy
 # from projects.lab.proxy import Proxy
-from polygon_p.proxy import Proxy
+from polygon_p.model.proxy import Proxy
 
 
 class TestProxy(TestCase):

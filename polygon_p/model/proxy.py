@@ -1,5 +1,5 @@
-from polygon_p.interfacePolygon import PolygonInterface
-from polygon_p.polygon import Polygon
+from polygon_p.model.interfacePolygon import PolygonInterface
+from polygon_p.model.polygon import Polygon
 
 
 class Proxy(PolygonInterface):

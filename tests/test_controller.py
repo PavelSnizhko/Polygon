@@ -1,11 +1,8 @@
 from unittest import TestCase
-from unittest.mock import Mock
 
-from polygon_p import polygon
-from polygon_p import basic_service
-from polygon_p.basic_service import Parse
+from polygon_p.controller.parser import CalculateService
 from polygon_p.controller import Controller
-from mock import call, patch
+from mock import patch
 
 
 class TestController(TestCase):
@@ -39,10 +36,32 @@ class TestController(TestCase):
         self.controller.parser.get_arguments.return_value = [1, 2, 3, 5]
         self.assertEqual(self.controller.update_model_data(), self.controller)
 
-    def test_show_square_service(self):
-        input_string = "2 20 30 50"
-        self.controller.model.calculate_square.return_value = 50
-        self.controller.view.show_value_of_square.return_value = True
-        self.assertTrue(self.controller.show_square_service())
-        self.controller.view.show_value_of_square.return_value = False
-        self.assertFalse(self.controller.show_square_service())
+
+    def test_service_perimeter(self):
+        self.controller.model.get_n.return_value = 10
+        self.controller.model.get_a.return_value = 5
+
+        self.assertEqual(CalculateService.calculate_perimeter(self.controller.model.get_n(),
+                                                              self.controller.model.get_a()), 50)
+        self.controller.model.get_n.return_value = "d"
+        self.controller.model.get_a.return_value = "S"
+
+        with self.assertRaises(Exception) as context:
+            CalculateService.calculate_perimeter(self.controller.model.get_n(),
+                                                 self.controller.model.get_a())
+        self.assertTrue("Error incorrect input data" in str(context.exception))
+
+
+    def test_service_square(self):
+        self.controller.model.get_n.return_value = 10
+        self.controller.model.get_a.return_value = 5
+
+        self.assertEqual(CalculateService.calculate_square(self.controller.model.get_n(),
+                                                              self.controller.model.get_a()), 71.08210702110543)
+
+        self.controller.model.get_n.return_value = "d"
+
+        with self.assertRaises(Exception) as context:
+            CalculateService.calculate_square(self.controller.model.get_n(),
+                                                 self.controller.model.get_a())
+        self.assertTrue("Error incorrect input data" in str(context.exception))

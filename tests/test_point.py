@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import unittest
 
-from polygon_p.point import Point
+from polygon_p.model.point import Point
 
 
 
