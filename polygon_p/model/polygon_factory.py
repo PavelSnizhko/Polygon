@@ -10,6 +10,13 @@ class IPolygon(metaclass=ABCMeta):
     def get_type_polygon():
         """The Polygon interface """
 
+    @abstractmethod
+    def get_side(self):
+        """The Polygon method to get size of side """
+
+    @abstractmethod
+    def get_n(self):
+        """The Polygon method to get number of angle """
 
 class Triangle(IPolygon, Point):
     def __init__(self, x, y, side, n=3):

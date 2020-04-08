@@ -24,7 +24,7 @@ class SingletonMeta(type):
         return self._instance
 
 
-class AdapterPolygon(PolygonFactory):
+class AdapterPolygon(PolygonFactory, CalculateService):
     def __init__(self, arg_string):
         super().__init__()
         self.parser = Parser(arg_string)
@@ -34,6 +34,13 @@ class AdapterPolygon(PolygonFactory):
         arguments = self.parser.argument_parser().get_arguments()
         polygon = PolygonFactory.get_polygon(arguments[0], arguments[1], arguments[2], arguments[3])
         return polygon
+
+
+    def calculate(self, n, a):
+        return super().calculate(n, a)
+
+
+
 
 class Parser(object, metaclass=SingletonMeta):
     def __init__(self, string):
