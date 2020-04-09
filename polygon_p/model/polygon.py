@@ -13,7 +13,6 @@ class Polygon(Point, PolygonInterface):
     def get_n(self):
         return self.__n
 
-
     def set_n(self, n: int):
         self.__n = n
 

@@ -2,6 +2,11 @@ import re
 
 
 class View:
+
+    @staticmethod
+    def input_data(arg_string):
+        return arg_string
+
     @staticmethod
     def show_number_side(number_of_side):
         print("--------The polygon_p has  {} sides".
