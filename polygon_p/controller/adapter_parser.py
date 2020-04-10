@@ -10,15 +10,14 @@ from polygon_p.controller.parser import Parser
 
 
 
-class AdapterPolygon(PolygonFactory, CalculateService):
-    def __init__(self, arg_string):
+class AdapterPolygon():
+    def __init__(self, polygon_factory, arg_string):
         super().__init__()
         self.parser = Parser(arg_string)
-
+        self.polygon_factory = polygon_factory
 
     def get_polygon(self):
         arguments = self.parser.argument_parser().get_arguments()
-        polygon = PolygonFactory.get_polygon(arguments[0], arguments[1], arguments[2], arguments[3])
+        polygon = self.polygon_factory.get_polygon(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4])
         return polygon
-
 

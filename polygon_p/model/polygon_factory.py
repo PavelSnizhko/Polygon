@@ -1,29 +1,19 @@
 from abc import ABCMeta, abstractmethod, ABC
 
+from polygon_p.controller.observer import Observable
 from polygon_p.model.point import Point
 
 
-class IPolygon(metaclass=ABCMeta):
+class IPolygon(Point, metaclass=ABCMeta):
+    def __init__(self, x, y, side, n):
+        super().__init__(x, y)
+        self.__side = side
+        self.__n = n
 
-    @staticmethod
     @abstractmethod
-    def get_type_polygon():
+    def get_type_polygon(self):
         """The Polygon interface """
 
-    @abstractmethod
-    def get_side(self):
-        """The Polygon method to get size of side """
-
-    @abstractmethod
-    def get_n(self):
-        """The Polygon method to get number of angle """
-
-class Triangle(IPolygon, Point):
-    def __init__(self, x, y, side, n=3):
-        super().__init__(x, y)
-        self.__side = side
-        self.__n = n
-
     @property
     def get_side(self):
         return self.__side
@@ -32,38 +22,36 @@ class Triangle(IPolygon, Point):
     def get_n(self):
         return self.__n
 
-    def get_type_polygon(self):
-        return "Triangle " + " side: " + str(self.__n)
-
-
-class Pentagon(IPolygon, Point):
-    def __init__(self, x, y, side, n=5):
-        super().__init__(x, y)
+    def set_side(self, side):
         self.__side = side
-        self.__n = n
+
+
+class Triangle(IPolygon):
 
     def get_type_polygon(self):
-        return "Pentagon," + " side: " + str(self.__n)
-
-    @property
-    def get_side(self):
-        return self.__side
-
-    @property
-    def get_n(self):
-        return self.__n
+        return "Triangle " + " side: " + str(self.get_side)
 
 
-class PolygonFactory():
+class Pentagon(IPolygon):
 
-    @staticmethod
-    def get_polygon(polygon_type, x, y, side):
+    def get_type_polygon(self):
+        return "Pentagon," + " side: " + str(self.get_side)
+
+
+class PolygonFactory(Observable):
+
+    def get_polygon(self, polygon_type, x, y, side, n):
+        print(side)
         if polygon_type == "Triangle":
-            return Triangle(x, y, side)
-        if polygon_type == "Pentagon":
-            return Pentagon(x, y, side)
+            polygon_ = Triangle(x, y, side, n)
+            self.notify_observer(polygon_)
+            return polygon_
+        elif polygon_type == "Pentagon":
+            polygon_ = Pentagon(x, y, side, n)
+            self.notify_observer(polygon_)
+            return polygon_
 
 
 if __name__ == '__main__':
-    polygon = PolygonFactory.get_polygon("Triangle", 10, 30, 30)
+    polygon = PolygonFactory().get_polygon("Triangle", 10, 30, 30, 40)
     print(polygon.get_type_polygon())

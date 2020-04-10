@@ -50,5 +50,5 @@ class Parser(object, metaclass=SingletonMeta):
     def get_arguments(self):
         if self.__is_parsed:
             return self.__name_polygon, self.__arguments[0], self.__arguments[1], \
-                   self.__arguments[2]
+                   self.__arguments[2], self.__arguments[3]
         raise Exception

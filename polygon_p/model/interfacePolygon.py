@@ -13,10 +13,6 @@ class PolygonInterface(metaclass=abc.ABCMeta):
     def get_a(self):
         raise NotImplementedError()
 
-    # @abc.abstractmethod
-    # def calculate_square(self):
-    #     raise NotImplementedError()
-
 
     @abc.abstractmethod
     @check_values
